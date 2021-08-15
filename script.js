@@ -1,14 +1,17 @@
 
 // pegando os botões
 
-const botaoDer = document.getElementById('der')
-const botaoDie = document.getElementById('die')
-const botaoDas = document.getElementById('das')
+const botaoDer = document.getElementById('btn-der')
+const botaoDie = document.getElementById('btn-die')
+const botaoDas = document.getElementById('btn-das')
 const content = document.getElementById('content')
 const underTitle = document.getElementById('under-title')
 const espaco = document.getElementById('espaco')
 const richtig = document.getElementById('richtig')
 const palavra = document.getElementById('palavra')
+const modal = document.getElementById('modal-wrapper')
+const modalBtn = document.getElementById('btn-reset')
+const modalRes = document.getElementById('modal-res')
 
 
 //biblioteca de palavras
@@ -23,8 +26,8 @@ let check = false
 let cont = 0
 let acertos = 0
 let erros = 0
-const teste = ['Kind', 'Apfel', 'Kinder', 'Frau', 'Tisch', 'Tasche', 'Mann', 'Buch', 'Mädchen']
-palavra.textContent = teste[cont]
+const listaPalavras = ['Kind', 'Apfel','Kinder', 'Frau', 'Tisch', 'Tasche', 'Mann', 'Buch', 'Mädchen']
+palavra.textContent = listaPalavras[cont]
 
 //adicionando eventos ao botões
 botaoDer.addEventListener('click', () => {
@@ -64,18 +67,21 @@ botaoDas.addEventListener('click', () => {
     proximaPalavra()
 })
 
+modalBtn.addEventListener('click', () => {
+    modal.classList.remove('modal-active')
+})
+
 // função de checagem 
 function checked() {
-    botaoDer.classList.add('active')
-    botaoDie.classList.add('active')
-    botaoDas.classList.add('active')
+    botaoDer.classList.add('btn-active')
+    botaoDie.classList.add('btn-active')
+    botaoDas.classList.add('btn-active')
 
     if (check) {
         underTitle.textContent = "Super! Das ist richtig :)"
         content.classList.add('acertou')
         richtig.textContent = ++acertos
     } else {
-
         underTitle.textContent = "Leider falsch :("
         content.classList.add('errou')
         falsch.textContent = ++erros
@@ -88,8 +94,9 @@ function proximaPalavra() {
     cont = ++cont
 
     setTimeout(function () {
-        if (cont == teste.length) {
-            alert(`Parabéns! Você concluiu o desafio! Seu total de acertos foi ${acertos} e o total de erros foi ${erros}`)
+        if (cont == listaPalavras.length) {
+            modal.classList.add('modal-active')
+            modalRes.innerHTML = `Seu total de acertos foi:<strong> ${acertos}</strong> <br> Seu total de erros foi: <strong>${erros}</strong>`
             cont = 0
             acertos = 0
             erros = 0
@@ -101,13 +108,13 @@ function proximaPalavra() {
 }
 
 // resetar os campos para a próxima rodada
-function reset(){
-    palavra.textContent = teste[cont]
+function reset() {
+    palavra.textContent = listaPalavras[cont]
     content.classList.remove('acertou')
     content.classList.remove('errou')
     underTitle.textContent = 'Weißt du es?'
     espaco.textContent = '_ _ _ '
-    botaoDer.classList.remove('active')
-    botaoDie.classList.remove('active')
-    botaoDas.classList.remove('active')
+    botaoDer.classList.remove('btn-active')
+    botaoDie.classList.remove('btn-active')
+    botaoDas.classList.remove('btn-active')
 }

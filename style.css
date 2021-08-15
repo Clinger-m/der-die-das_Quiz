@@ -2,7 +2,6 @@
     margin    : 0;
     padding   : 0;
     box-sizing: border-box;
-
 }
 
 a {
@@ -11,8 +10,6 @@ a {
 
 body {
     background-color: #F5F7F8;
-
-
 }
 
 .navbar {
@@ -80,7 +77,6 @@ body {
     border-radius   : .5rem;
 }
 
-
 #palavra,
 #espaco {
     font-family: 'Poppins', sans-serif;
@@ -132,9 +128,50 @@ body {
     background-color: rgb(255, 111, 111);
 }
 
-.question-buttons a.active {
-    pointer-events  : none;
-    box-shadow: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.226);
+.question-buttons a.btn-active {
+    pointer-events: none;
+    box-shadow    : 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.226);
+}
+
+/*============== MODAL ==============*/
+.modal-wrapper.modal-active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal-wrapper {
+    display   : flex;
+    position  : fixed;
+    width     : 100vw;
+    height    : 100vh;
+    top       : 0;
+    left      : 0;
+    background: rgba(4, 9, 17, .8);
+    visibility: hidden;
+    opacity: 0;
+}
+
+.modal-wrapper .modal {
+    background-color: #fff;
+    width           : min(36.875rem, 90%);
+    margin          : auto;
+    border-radius   : .5rem;
+    font-family     : 'Poppins', sans-serif;
+    color           : #12394A;
+    text-align      : center;
+    padding         : 1rem
+}
+
+.modal-wrapper .modal p {
+    margin-top: .5rem;
+    margin-bottom: 1.5rem;
+}
+
+.modal-wrapper .modal a {
+    background-color: rgb(228, 92, 92);
+    padding         : .5rem;
+    border-radius   : .5rem;    
+    color           : #fff;
 }
 
 /* APP */
